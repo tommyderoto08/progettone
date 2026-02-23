@@ -1,14 +1,13 @@
 package com.example.towerdifence.controller;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
+import javafx.scene.control.Button;
 
 public class Controller {
     @FXML
-    private Label welcomeText;
+    private Button newGame;
 
-    @FXML
-    protected void onHelloButtonClick() {
-        welcomeText.setText("Welcome to JavaFX Application!");
+    public void nuovaPartita(){
+
     }
 }
