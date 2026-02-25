@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.example</groupId>
-    <artifactId>towerDifence</artifactId>
+    <artifactId>progettone</artifactId>
     <version>1.0-SNAPSHOT</version>
     <name>towerDifence</name>
 
@@ -60,7 +60,7 @@
                         <!-- Default configuration for running with: mvn clean javafx:run -->
                         <id>default-cli</id>
                         <configuration>
-                            <mainClass>com.example.towerdifence/com.example.towerdifence.Main</mainClass>
+                            <mainClass>com.example.towerdifence/com.example.progettone.Main</mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>
                             <jlinkImageName>app</jlinkImageName>

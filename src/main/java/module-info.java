@@ -1,10 +1,10 @@
-module com.example.towerdifence {
+module com.example.progettone {
     requires javafx.controls;
     requires javafx.fxml;
 
 
-    opens com.example.towerdifence to javafx.fxml;
-    exports com.example.towerdifence;
-    exports com.example.towerdifence.controller;
-    opens com.example.towerdifence.controller to javafx.fxml;
+    opens com.example.progettone to javafx.fxml;
+    exports com.example.progettone;
+    exports com.example.progettone.controller;
+    opens com.example.progettone.controller to javafx.fxml;
 }
