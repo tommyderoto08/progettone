@@ -18,10 +18,6 @@ public class ConsoleStopwatch {
                 return t;
             });
 
-    public static void main(String[] args) {
-        new ConsoleStopwatch().run();
-    }
-
     private void run() {
         // aggiorna la visuale ogni 100 ms
         scheduler.scheduleAtFixedRate(this::printTime, 0, 100, TimeUnit.MILLISECONDS);
