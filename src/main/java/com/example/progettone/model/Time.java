@@ -6,6 +6,10 @@ public class Time {
     protected int milliseconds;
 
     public Time(){
+        resetTimer();
+    }
+
+    public void resetTimer(){
         this.milliseconds = 0;
         this.minute = 0;
         this.seconds = 0;
@@ -24,6 +28,5 @@ public class Time {
             seconds = 0;
         }
     }
-
 
 }

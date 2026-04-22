@@ -7,5 +7,7 @@ public class Controller {
     @FXML
     private Button newGame;
 
-    
+    public void initialize(){
+
+    }
 }
