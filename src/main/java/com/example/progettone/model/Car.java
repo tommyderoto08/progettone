@@ -46,10 +46,6 @@ public class Car {
 
     }
 
-//    public Circle createCircle(){
-//
-//    }
-
     public void nuovaPerformance(){
         this.performanceGiro = 0.95 + (Math.random()*0.10);
     }
