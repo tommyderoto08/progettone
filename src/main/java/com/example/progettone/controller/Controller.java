@@ -4,11 +4,12 @@ import com.example.progettone.model.Car;
 import com.example.progettone.model.Circuito;
 import com.example.progettone.model.Scuderia;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.layout.*;
 
 public class Controller {
     @FXML
-    private Button newGame;
+    private Pane pane;
 
     public void initialize(){
         Car f1 = new Car("Lewis Hamilton", Scuderia.FERRARI, new Circuito().percorsoBahrain(), 90.00);
@@ -33,5 +34,9 @@ public class Controller {
         Car w2 = new Car("Alex Albon", Scuderia.WILLIAMS, new Circuito().percorsoBahrain(), 90.00);
         Car c1 = new Car("Valteri Bottas", Scuderia.CADILLAC, new Circuito().percorsoBahrain(), 90.00);
         Car c2 = new Car("Sergio Perez", Scuderia.CADILLAC, new Circuito().percorsoBahrain(), 90.00);
+
+        Image i = new Image(getClass().getResource("/com/example/progettone/image/Screenshot (1).png").toExternalForm());
+
+        pane.setBackground(new Background(new BackgroundImage(i, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(100, 100, true, true, true, false))));
     }
 }
