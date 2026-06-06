@@ -11,8 +11,8 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("view/circuito.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 700, 670);
-        stage.setTitle("Merda di app");
+        Scene scene = new Scene(fxmlLoader.load(), 1100, 660);
+        stage.setTitle("gioco");
         stage.setScene(scene);
         stage.show();
     }

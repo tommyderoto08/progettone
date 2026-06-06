@@ -2,18 +2,116 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
 
-<VBox prefHeight="664.0" prefWidth="691.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.progettone.controller.Controller">
-   <children>
-      <Pane fx:id="pane" prefHeight="437.0" />
-      <HBox prefHeight="100.0" prefWidth="200.0">
-         <children>
-            <VBox prefHeight="200.0" prefWidth="100.0">
-               <children>
-                  <Label fx:id="nomePilota1" />
-               </children>
+<StackPane fx:id="rootStack"
+           prefWidth="1100" prefHeight="660"
+           style="-fx-background-color: #0a0a14;"
+           xmlns="http://javafx.com/javafx/17"
+           xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="com.example.progettone.controller.Controller">
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         LAYOUT PRINCIPALE (pista + pannello laterale)
+         ═══════════════════════════════════════════════════════════════════════ -->
+    <HBox spacing="0">
+
+        <!-- AREA PISTA -->
+        <Pane fx:id="pistPane"
+              prefWidth="900" prefHeight="660"
+              style="-fx-background-color: #111118;">
+        </Pane>
+
+        <!-- PANNELLO LATERALE -->
+        <VBox prefWidth="200" prefHeight="660"
+              style="-fx-background-color: #0d0d1a; -fx-border-color: #222233; -fx-border-width: 0 0 0 1;"
+              spacing="0">
+
+            <!-- Header -->
+            <VBox style="-fx-background-color:#E10600; -fx-padding: 12 10 12 10;">
+                <Label text="F1 SIMULATOR"
+                       style="-fx-font-family: Monospace; -fx-font-weight: bold; -fx-font-size: 14; -fx-text-fill: white;"/>
+                <Label fx:id="labelStato" text="—"
+                       style="-fx-font-family: Monospace; -fx-font-size: 11; -fx-text-fill: rgba(255,255,255,0.8);"/>
+                <Label fx:id="labelGiro" text="—"
+                       style="-fx-font-family: Monospace; -fx-font-size: 11; -fx-text-fill: rgba(255,255,255,0.8);"/>
             </VBox>
-         </children>
-      </HBox>
-   </children>
-</VBox>
+
+            <!-- Pulsanti di controllo -->
+            <HBox spacing="4" style="-fx-padding: 8 6 8 6;" alignment="CENTER">
+                <Button fx:id="btnStart" text="▶ Start"
+                        onAction="#onStart"
+                        style="-fx-background-color:#1db954; -fx-text-fill:white; -fx-font-family:Monospace; -fx-font-weight:bold; -fx-font-size:11; -fx-background-radius:6; -fx-cursor:hand; -fx-padding:5 8 5 8;"/>
+                <Button fx:id="btnPausa" text="⏸ Pausa"
+                        onAction="#onPausa"
+                        style="-fx-background-color:#f0a500; -fx-text-fill:white; -fx-font-family:Monospace; -fx-font-weight:bold; -fx-font-size:11; -fx-background-radius:6; -fx-cursor:hand; -fx-padding:5 8 5 8;"/>
+                <Button fx:id="btnStop" text="⏹"
+                        onAction="#onStop"
+                        style="-fx-background-color:#cc2200; -fx-text-fill:white; -fx-font-family:Monospace; -fx-font-weight:bold; -fx-font-size:11; -fx-background-radius:6; -fx-cursor:hand; -fx-padding:5 8 5 8;"/>
+            </HBox>
+
+            <!-- Separatore -->
+            <Separator style="-fx-background-color:#222233;"/>
+
+            <!-- Titolo classifica -->
+            <Label text="CLASSIFICA"
+                   style="-fx-font-family: Monospace; -fx-font-weight:bold; -fx-font-size:11; -fx-text-fill:#aaaacc; -fx-padding: 8 6 4 6;"/>
+
+            <!-- Lista classifica (scrollabile) -->
+            <ScrollPane fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED"
+                        style="-fx-background-color: transparent; -fx-background: transparent;"
+                        VBox.vgrow="ALWAYS">
+                <VBox fx:id="classificaBox" spacing="1" style="-fx-padding: 0 2 4 2;"/>
+            </ScrollPane>
+
+            <!-- Legenda DRS -->
+            <VBox style="-fx-padding: 8 6 8 6; -fx-border-color:#222233; -fx-border-width:1 0 0 0;" spacing="3">
+                <Label text="LEGENDA"
+                       style="-fx-font-family:Monospace; -fx-font-size:9; -fx-text-fill:#555566; -fx-font-weight:bold;"/>
+                <HBox spacing="6" alignment="CENTER_LEFT">
+                    <javafx.scene.shape.Circle radius="5" fill="#FFCC00" stroke="white" strokeWidth="1.5"/>
+                    <Label text="La tua scuderia"
+                           style="-fx-font-family:Monospace; -fx-font-size:9; -fx-text-fill:#888899;"/>
+                </HBox>
+                <HBox spacing="6" alignment="CENTER_LEFT">
+                    <javafx.scene.shape.Circle radius="5" fill="transparent" stroke="limegreen" strokeWidth="2"/>
+                    <Label text="DRS attivo"
+                           style="-fx-font-family:Monospace; -fx-font-size:9; -fx-text-fill:#888899;"/>
+                </HBox>
+            </VBox>
+        </VBox>
+    </HBox>
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         OVERLAY — Scelta Scuderia
+         ═══════════════════════════════════════════════════════════════════════ -->
+    <VBox fx:id="overlayScelta"
+          alignment="CENTER"
+          style="-fx-background-color: rgba(5,5,15,0.96);"
+          maxWidth="620" maxHeight="480"
+          StackPane.alignment="CENTER">
+        <!-- Contenuto generato dal controller -->
+    </VBox>
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         OVERLAY — Fine Gara
+         ═══════════════════════════════════════════════════════════════════════ -->
+    <VBox fx:id="overlayFine"
+          alignment="CENTER"
+          visible="false"
+          style="-fx-background-color: rgba(5,5,15,0.97);"
+          maxWidth="500" maxHeight="600"
+          StackPane.alignment="CENTER">
+
+        <ScrollPane fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED"
+                    style="-fx-background-color: transparent; -fx-background: transparent;"
+                    maxHeight="560">
+            <VBox fx:id="risultatiFine"
+                  alignment="TOP_CENTER"
+                  style="-fx-padding: 28 24 20 24;"
+                  spacing="3"/>
+        </ScrollPane>
+    </VBox>
+
+</StackPane>

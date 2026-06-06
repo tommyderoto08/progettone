@@ -1,33 +1,23 @@
 package com.example.progettone.model;
 
-import javafx.animation.PathTransition;
-
 public class Settore {
-    private double startProgress;
-    private double endProgress;
-    private boolean isDRSZone;
-    private double speedMultiplier;
+    private final double startProgress;
+    private final double endProgress;
+    private final boolean isDRSZone;
+    private final double speedMultiplier;
+    private final String nome;
 
-    public Settore(double startProgress, double endProgress, boolean isDRSZone, double speedMultiplier) {
+    public Settore(String nome, double startProgress, double endProgress, boolean isDRSZone, double speedMultiplier) {
+        this.nome = nome;
         this.startProgress = startProgress;
         this.endProgress = endProgress;
         this.isDRSZone = isDRSZone;
         this.speedMultiplier = speedMultiplier;
     }
 
-    public double getStartProgress() {
-        return startProgress;
-    }
-
-    public double getEndProgress() {
-        return endProgress;
-    }
-
-    public boolean isDRSZone() {
-        return isDRSZone;
-    }
-
-    public double getSpeedMultiplier() {
-        return speedMultiplier;
-    }
+    public String getNome()          { return nome; }
+    public double getStartProgress() { return startProgress; }
+    public double getEndProgress()   { return endProgress; }
+    public boolean isDRSZone()       { return isDRSZone; }
+    public double getSpeedMultiplier(){ return speedMultiplier; }
 }
